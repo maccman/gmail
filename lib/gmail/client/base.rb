@@ -37,7 +37,6 @@ module Gmail
       # Return current connection. Log in automaticaly to specified account if
       # it is necessary.
       def connection
-        login and at_exit { logout } unless logged_in?
         @imap
       end
       alias :conn :connection
