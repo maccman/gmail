@@ -7,14 +7,14 @@ module Gmail
 
       def initialize(username, options={})
         @token           = options.delete(:token)
-       
+
         super(username, options)
       end
 
       def login(raise_errors=false)
         @imap and @logged_in = (login = @imap.authenticate('XOAUTH2', username, token)) && login.name == 'OK'
       rescue
-        raise_errors and raise AuthorizationError, "Couldn't login to given GMail account: #{username}"        
+        raise_errors and raise AuthorizationError, "Couldn't login to given GMail account: #{username}"
       end
 
       def smtp_settings
